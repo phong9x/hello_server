@@ -1,0 +1,272 @@
+<html lang="en" xmlns:jsp="http://java.sun.com/JSP/Page" 
+xmlns:c="http://java.sun.com/jsp/jstl/core" 
+xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:tiles="http://tiles.apache.org/tags-tiles" 
+xmlns:form="http://www.springframework.org/tags/form" 
+xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" 
+xmlns:s="http://www.springframework.org/tags">
+
+<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+<c:set value="/theme/admin" var="theme"><jsp:text/><jsp:text/><jsp:text/></c:set>
+<c:set value="/" var="url_base"><jsp:text/><jsp:text/></c:set>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Hello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Web Fonts-->
+
+    <!-- Vendor CSS (GLOBAL MANDATORY STYLES)-->
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/simple-line-icons/simple-line-icons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/uniform/css/uniform.default.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"/>
+
+    <!-- Vendor CSS (GLOBAL PAGE LEVEL STYLES)-->
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/select2/select2.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/fullcalendar/fullcalendar.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/owl.carousel/assets/owl.carousel.css"/>
+    <!-- Vendor CSS (THEME STYLES)-->
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/css/components.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/css/plugins.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/admin/layout/css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/admin/layout/css/themes/darkblue.css"/>
+ 	<link rel="stylesheet" type="text/css" href="${theme}/assets/css/bootstrap-select.min.css"/>
+    <!-- Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="${theme}/assets/css/admin.css"/>
+	<script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery.min.js"><jsp:text/><jsp:text/></script>	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+     <!-- Smart Editor-->
+    <script type="text/javascript" src="${theme}/smart-editor/js/service/HuskyEZCreator.js" charset="utf-8"><jsp:text/></script>
+  </head>
+  <script>
+  var url_base = '${url_base}';
+  </script>
+  <style>
+  .loading-page{
+  	position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    /* background: #111; */
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding-top: 200px;
+  }
+  </style>
+  <body class="page-header-fixed page-quick-sidebar-over-content">
+  <div class="sidebar-left">
+      <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+          <div class="page-logo"><a href="${url_base }admin/index"><img src="${theme }/assets/images/logo/logo11.png" alt="logo" class="logo-default"/><jsp:text/></a><jsp:text/></div>
+          <!-- .page-logo -->
+          <div class="profile">
+            <div class="profile_pic"><img src="${theme }/assets/images/avatar-talk.jpg" alt="..." class="profile_img"/><jsp:text/></div>
+            <div class="profile_info"><span>Welcome,</span>
+              <h3>${sessionScope.admin.fullname }</h3>
+            </div>
+          </div>
+          
+          <tiles:insertTemplate template="/WEB-INF/layouts/admin/menu.jspx" />
+
+        </div>
+      </div>
+      </div>
+   <div class="page-header">
+      <div class="page-header-inner container">
+        <!-- BEGIN LOGO-->
+        <!-- .responsive-toggler-->
+        <div class="top-menu">
+          <ul class="nav navbar-nav pull-right">
+            <li class="dropdown dropdown-user"><a href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" class="dropdown-toggle">
+            <span class="username username-hide-on-mobile">${sessionScope.admin.fullname }  ${sessionScope.admin.email }</span><i class="fa fa-angle-down"><jsp:text/></i><jsp:text/></a>
+              <div class="dropdown-menu dropdown-menu-default">
+                <div class="item-menu"><span class="title">최근 로그인</span><span><fmt:formatDate value="${sessionScope.admin.lastLogin }" pattern="yyyy-MM-dd HH:mm:ss"/></span></div>
+                <div class="item-menu"><span class="title">${sessionScope.admin.fullname }</span><span>${sessionScope.admin.email }</span></div>
+                <div class="footer-menu">
+                  <a href="${url_base}public/admin/logout" class="btn green pull-right">로그아웃</a>
+                </div>
+              </div>
+            </li>
+            <!-- .dropdown-user-->
+          </ul>
+        </div>
+        <!-- .top-menu-->
+      </div>
+    </div>
+    <!-- .page-header-->
+    <div class="clearfix"><jsp:text/></div>
+    <div class="page-container">
+  	<tiles:insertAttribute name="body" />
+  	    </div>
+   <div id="popupRequiredInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><jsp:text/><jsp:text/></button>
+          </div>
+          <div class="modal-body">
+            <h4><strong>
+            	<p>입력되지 않은 항목이 있습니다.</p>
+            <span id="required_message">
+            	&#160;
+            </span>
+            </strong>
+            </h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn red"><s:message code="button.cancel" /><jsp:text/><jsp:text/></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Vendor jQuery (CORE PLUGINS - METRONIC)-->
+    
+     <div id="popupConfirmSaveDate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+          	<h4 class="modal-title"><strong>안내</strong></h4>
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"></button>
+          </div>
+          <div class="modal-body">
+            <h4><strong>저장하시겠습니까?</strong>
+              <!-- Are you sure you want to delete?-->
+            </h4>
+          </div>
+          <div class="modal-footer">
+          	<button type="button" onclick="$('form#validated').submit();" class="btn red"><s:message code="button.confirm" /></button>
+            <button type="button" data-dismiss="modal" class="btn btn-default"><s:message code="button.cancel" /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-migrate.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-ui/jquery-ui.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap/js/bootstrap.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery.blockui.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery.cokie.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/uniform/jquery.uniform.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"><jsp:text/><jsp:text/></script>
+
+    <!-- Vendor jQuery (PAGE LEVEL PLUGINS - METRONIC)-->
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-validation/js/jquery.validate.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-validation/js/additional-methods.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/select2/select2.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-daterangepicker/daterangepicker.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kr.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/ckeditor/ckeditor.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/ckeditor/adapters/jquery.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/ckeditor/lang/ko.js"><jsp:text/><jsp:text/></script>
+    <!-- IMPORTANT! fullcalendar depends on jquery-ui.min.js for drag & drop support, and moment.min.js-->
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/moment.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/fullcalendar/fullcalendar.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/fullcalendar/lang/ko.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/owl.carousel/owl.carousel.min.js"><jsp:text/><jsp:text/></script>
+
+    <!-- Vendor jQuery (PAGE LEVEL STYLES - METRONIC)-->
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/scripts/metronic.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/admin/layout/scripts/layout.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/admin/layout/scripts/quick-sidebar.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/admin/layout/scripts/demo.js"><jsp:text/><jsp:text/></script>
+	<script type="text/javascript" src="${theme}/libs/starwars.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/bootstrap-rating.js"><jsp:text/></script>
+    <!-- Theme Script-->
+	<script type="text/javascript" src="${theme}/assets/js/bootstrap-select.min.js"><jsp:text/><jsp:text/></script>
+	<script type="text/javascript" src="${theme}/assets/js/jquery.jqChart.min.js"><jsp:text/></script>
+	<script type="text/javascript" src="${theme}/assets/js/sidebar-menu.js"><jsp:text/></script>
+	<script type="text/javascript" src="${theme}/assets/js/mustache.min.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/assets/js/admin.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/assets/js/admin_js.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/assets/js/admin_custom.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/assets/js/required.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/assets/js/customer.js"><jsp:text/><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/assets/js/ajax_api.js"><jsp:text/><jsp:text/></script>
+    
+    <script type="text/javascript">
+      //- $(function () {
+      //-     $('#yourId').jalendar({
+      //-         dateType: 'mm-dd-yyyy',
+      //-         color: '#577e9a', // Unlimited Colors
+      //-         color2: '#57c8bf', // Unlimited Colors
+      //-         lang: 'KR',
+      //-         sundayStart: true
+      //-     });
+      //- });
+        $(document).ready(function() {
+            if($('input[name="status_support"]').value=="Off"){
+              $('.btn-support').hide();
+            }
+            $(".stars-default").rating();
+            $(".stars-green").rating('create',{coloron:'green',onClick:function(){ alert('rating is ' + this.attr('data-rating')); }});
+            $(".stars-herats").rating('create',{coloron:'red',limit:10,glyph:'glyphicon-heart'});
+        });
+        
+        if($('#smart-editor').length > 0){
+	        	
+	        var oEditors = [];
+	
+	        var sLang = "ko_KR";	// 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
+	
+	        // 추가 글꼴 목록
+	        //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+	
+	        nhn.husky.EZCreator.createInIFrame({
+	        	oAppRef: oEditors,
+	        	elPlaceHolder: "smart-editor",
+	        	sSkinURI: "/theme/admin/smart-editor/SmartEditor2Skin.html",	
+	        	htParams : {
+	        		bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+	        		bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+	        		bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+	        		//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+	        		//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+	        		fOnBeforeUnload : function(){
+	        			//alert("완료!");
+	        		},
+	        		I18N_LOCALE : sLang
+	        	}, //boolean
+	        	fOnAppLoad : function(){
+	        		//예제 코드
+	        		//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+	        	},
+	        	fCreator: "createSEditor2"
+	        });
+	
+	
+	        function showHTML() {
+	        	var sHTML = oEditors.getById["smart-editor"].getIR();
+	        	return sHTML;
+	        }
+	        	
+	        function submitContents(elClickedObj) {
+	        	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+	        	
+	        	// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
+	        	
+	        	try {
+	        		elClickedObj.form.submit();
+	        	} catch(e) {}
+	        }
+	
+	        function setDefaultFont() {
+	        	var sDefaultFont = '궁서';
+	        	var nFontSize = 24;
+	        	oEditors.getById["ir1"].setDefaultFont(sDefaultFont, nFontSize);
+	        }
+        }
+    </script>
+  </body>
+</html>

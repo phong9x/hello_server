@@ -1,0 +1,75 @@
+<html lang="en" xmlns:jsp="http://java.sun.com/JSP/Page" 
+xmlns:c="http://java.sun.com/jsp/jstl/core" 
+xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:tiles="http://tiles.apache.org/tags-tiles" 
+xmlns:form="http://www.springframework.org/tags/form"  
+xmlns:s="http://www.springframework.org/tags">
+<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+
+<head>
+	<meta property="al:android:url" content="hello"/>
+    <meta property="al:android:package" content="com.aimmed.hello"/>
+    <meta property="al:android:app_name" content="Hello"/>
+    <meta property="og:title" content="Hello" />
+    <meta property="og:image" content="${url_image }" />
+    <meta property="og:type" content="website" />
+    
+    <script type="text/javascript" src="/theme/mobile/js/jquery.min.js"><jsp:text/></script>
+</head>
+<body>
+  <tiles:insertAttribute name="body" />
+  <script type="text/javascript">
+ 	// <![CDATA[
+		$(document).ready(function(){
+			
+			function checkApp(){
+				/* var ua = window.navigator.userAgent;
+			    if(ua.match(/Android/i)){
+			    	alert("android");
+			    	location.replace = "aimmed://hello";
+			    	setTimeout(function () {
+			    		alert("run");
+			    		location.replace = "market://details?id=com.aimmed.hello"; 
+			    		}, 1000);
+			    }else if(ua.match(/iPhone|iPad|iPod/i)){
+			    	window.location.href = "com.trams.apptester://com.nhncorp.oauthLogin";
+			    	setTimeout(function () {
+			    		window.location.href = "https://itunes.apple.com/appdir"; 
+			    		}, 1000);
+			    	console.log(2);
+			    }
+			    */
+			    var uagentLow = navigator.userAgent.toLocaleLowerCase(),
+				    chrome25,
+				    kitkatWebview; 
+			 
+				if(uagentLow.search("android") > -1){
+				    chrome25 = uagentLow.search("chrome") > -1 && navigator.appVersion.match(/Chrome\/\d+.\d+/)[0].split("/")[1] > 25;
+				    kitkatWebview = uagentLow.indexOf("naver") != -1 || uagentLow.indexOf("daum") != -1;
+				     
+				    if (chrome25 && !kitkatWebview){
+				    	$("#app-link").attr("href", "intent://aimmed/#Intent;scheme=hello;package=com.aimmed.hello;end");
+				    } else{
+				        $("#app-link").attr("href", "hello://aimmed");
+				        setTimeout(function () {
+				        	$("#app-link").attr("href", "market://details?id=com.aimmed.hello");
+				        	$("#app-link").trigger("click");
+				    	}, 1000);
+				    }
+				}else if(uagentLow.search("iphone") > -1){
+					$("#app-link").attr("href", "https://www.hellomindcare.com");
+				}
+				//alert($("#app-link").attr("href"));
+				/* $("#app-link").trigger("click"); */
+				//$("#app-link")[0].click();
+				/* document.getElementById("app-link").click(); */
+			}
+			
+			checkApp();
+		});
+		
+	// ]]>
+	</script>
+</body>
+</html>

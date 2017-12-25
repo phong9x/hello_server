@@ -1,0 +1,166 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:tiles="http://tiles.apache.org/tags-tiles"
+	xmlns:spring="http://www.springframework.org/tags">
+<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+<c:set value="/theme/mobile" var="theme"><jsp:text/><jsp:text/></c:set>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment</title>
+
+    <!-- Web Fonts-->
+    <link rel="stylesheet" type="text/css" href="${theme }/fonts/font/font-kopo.min.css" />
+
+    <!-- Vendor CSS-->
+    <!-- Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="${theme }/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="${theme }/css/jquery.mmenu.all.css" />
+    <link rel="stylesheet" type="text/css" href="${theme }/css/drum.css" />
+    <link rel="stylesheet" type="text/css" href="${theme }/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="${theme }/css/custom2.css" />
+    <link rel="stylesheet" type="text/css" href="${theme }/css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="${theme }/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" type="text/css" href="${theme }/fonts/font-awesome/css/font-awesome.min.css" />
+    
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    
+    -->
+  </head>
+
+	<tiles:insertAttribute name="body"></tiles:insertAttribute>
+
+	<!-- Vendor jQuery-->
+  
+  <script type="text/javascript" src="${theme }/js/jquery.min.js"><jsp:text/></script>
+  <script type="text/javascript" src="${theme }/js/bootstrap.min.js"><jsp:text/></script>
+  <script type="text/javascript" src="${theme }/js/jquery.validate.min.js"><jsp:text/></script>
+  <script type="text/javascript" src="${theme }/js/icheck.min.js"><jsp:text/></script>
+  <!--script type="text/javascript" src="js/hammer.min.js"><jsp:text/></script>
+  <script type="text/javascript" src="${theme }/js/hammer.fakemultitouch.js"><jsp:text/></script-->
+  <script type="text/javascript" src="${theme }/js/drum.js"><jsp:text/></script>
+  <script type="text/javascript" src="${theme }/js/jquery.countdown.min.js"><jsp:text/></script>
+  <!-- <script type="text/javascript" src="js/bootstrap-datepicker.min.js"><jsp:text/></script> -->
+  <script type="text/javascript" src="${theme }/js/owl.carousel.min.js"><jsp:text/></script>
+  <script type="text/javascript" src="${theme }/js/bootstrap-select.min.js"><jsp:text/></script>
+  <script type="text/javascript" src="${theme }/js/admin.js"><jsp:text/></script>
+  <script type="text/javascript" >
+
+    $(document).ready(function() {
+    	 // payment comment
+    	  
+    	$(".click-comment").click(function() {
+            $('.comment').toggleClass('block-comment');
+            $('.click-comment').toggleClass('block-icon');
+          });
+      var callbacks_list = $('.demo-callbacks ul');
+      $('.input-checkbox').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function(event){
+        callbacks_list.prepend('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
+      }).iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%'
+      });
+
+      $('#input-2').iCheck('uncheck');
+      $('input#input-2').on('ifChecked', function(event){
+        $('.input1 .icheckbox_square-blue').removeClass('checked');
+        $('.input3 .icheckbox_square-blue').removeClass('checked');
+        $('.input4 .icheckbox_square-blue').removeClass('checked');
+        $('.input5 .icheckbox_square-blue').removeClass('checked');
+        $('.input-form').addClass('block-input');
+        $(".input-form input").empty();
+      });
+      $('input#input-1').on('ifChecked', function(event){
+        $('.input2 .icheckbox_square-blue').removeClass('checked');
+        $('.input3 .icheckbox_square-blue').removeClass('checked');
+        $('.input4 .icheckbox_square-blue').removeClass('checked');
+        $('.input5 .icheckbox_square-blue').removeClass('checked');
+        $('.input-form').addClass('block-input');
+      });
+      $('input#input-3').on('ifChecked', function(event){
+        $('.input1 .icheckbox_square-blue').removeClass('checked');
+        $('.input2 .icheckbox_square-blue').removeClass('checked');
+        $('.input4 .icheckbox_square-blue').removeClass('checked');
+        $('.input5 .icheckbox_square-blue').removeClass('checked');
+        $('.input-form').addClass('block-input');
+      });
+      $('input#input-4').on('ifChecked', function(event){
+        $('.input1 .icheckbox_square-blue').removeClass('checked');
+        $('.input3 .icheckbox_square-blue').removeClass('checked');
+        $('.input2 .icheckbox_square-blue').removeClass('checked');
+        $('.input5 .icheckbox_square-blue').removeClass('checked');
+        $('.input-form').addClass('block-input');
+      });
+      $('input#input-5').on('ifChecked', function(event){
+        $('.input1 .icheckbox_square-blue').removeClass('checked');
+        $('.input3 .icheckbox_square-blue').removeClass('checked');
+        $('.input4 .icheckbox_square-blue').removeClass('checked');
+        $('.input2 .icheckbox_square-blue').removeClass('checked');
+        $('.input-form').removeClass('block-input');
+      });
+      $('input#input-5').on('ifUnchecked', function(event){
+        $('.input-form').addClass('block-input');
+      });
+  
+      
+      $(".more-price").hide();
+      $('.btn-more').on('click', function(event){
+    	  $(".more-price").toggle();
+        });
+    });
+
+    (function($) {
+        
+        function heighthbody() {
+          var heightbody = $( window ).height() + 20;
+          if(heightbody &lt; 600){
+            $('.payment-page2').addClass('height-payment');
+          }
+
+            // $('.item-img-section').css({"height": widthimg, "line-height": widthimg+'px'});
+            //$('.face-video').css({"height": widthbody});
+            // $('.item-img-section').css({"line-height": widthimg+'px'});
+        }
+
+        $(window).on('load', function() {
+          heighthbody();
+        });
+      })(jQuery);
+  </script>
+  <SCRIPT type="text/javascript">
+  function format(x) {
+	    if(isNaN(x))return "";
+	    n= x.toString().split('.');
+	    return n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")+(n.length>1?"."+n[1]:"");
+	}
+  $(document).ready(function() {
+	  var total=  parseInt($("input[name='money']").val())+  parseInt($('#userHelloCoin').data("id"));
+	  $('#totalHelloCoin').text(format(total)+'원');
+	  $("input[name='money']").change(function(){
+			  var total=  parseInt($(this).val())+  parseInt($('#userHelloCoin').data("id"));
+			  $('#totalHelloCoin').text(format(total)+'원');
+			  if($(this).val()==0){
+				  $('#other_money_id').removeClass("block-input");
+			  }else{
+				  $('#other_money_id').addClass("block-input");
+			  }
+		});
+	  $("input[name='other_money']").keyup(function () {
+		  var total=  parseInt($("input[name='other_money']").val())+  parseInt($('#userHelloCoin').data("id"));
+		  $('#totalHelloCoin').text(format(total)+'원');
+	  });
+	});
+  </SCRIPT>
+</html>

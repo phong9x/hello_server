@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="default" template="/WEB-INF/layouts/user_layout.jspx">
+	</definition>
+	<definition name="admin" template="/WEB-INF/layouts/admin/admin_layout.jspx">
+	</definition>
+	<definition name="admin_index" template="/WEB-INF/layouts/admin/admin_index.jspx">
+	</definition>
+	<definition name="admin_blank" template="/WEB-INF/layouts/admin/admin_blank.jspx">
+	</definition>
+	<definition name="admin_login" template="/WEB-INF/layouts/admin/admin_login.jspx">
+	</definition>
+	<definition name="user_login" template="/WEB-INF/layouts/user_login.jspx">
+	</definition>
+	<definition name="mobile_blank" template="/WEB-INF/layouts/mobile/mobile_blank.jspx">
+	</definition>
+	<definition name="payment_layout" template="/WEB-INF/layouts/mobile/payment_layout.jspx">
+	</definition>
+	<definition name="smart_editor_layout" template="/WEB-INF/layouts/admin/smart_editor.jspx">
+	</definition>
+</tiles-definitions>

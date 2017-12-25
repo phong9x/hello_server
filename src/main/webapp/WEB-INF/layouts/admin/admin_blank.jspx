@@ -1,0 +1,4 @@
+<html lang="ko" 
+xmlns:tiles="http://tiles.apache.org/tags-tiles">
+	<tiles:insertAttribute name="body" />
+</html>

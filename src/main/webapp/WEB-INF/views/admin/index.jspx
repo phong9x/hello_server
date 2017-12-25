@@ -1,0 +1,365 @@
+<div
+xmlns:c="http://java.sun.com/jsp/jstl/core" 
+xmlns:joda="http://www.joda.org/joda/time/tags" 
+xmlns:s="http://www.springframework.org/tags" 
+xmlns:form="http://www.springframework.org/tags/form" 
+xmlns:tiles="http://tiles.apache.org/tags-tiles" 
+xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" 
+xmlns:input="urn:jsptagdir:/WEB-INF/tags/input"
+xmlns:display="urn:jsptagdir:/WEB-INF/tags/display" 
+xmlns:jsp="http://java.sun.com/JSP/Page"
+version="2.0">
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:output omit-xml-declaration="yes" />
+<c:set value="/theme/admin" var="theme"></c:set>
+      <!-- .page-sidebar-wrapper-->
+      <div class="member page-content-wrapper">
+        <div class="page-content">
+          <div class="container">
+          	<div class="main-body-content">
+	            <!-- top-->
+	            <div class="home-top border-full">
+	              <div class="col-md-4">
+	                <p id="time_start">&#160;</p>
+	              </div>
+	              <div class="col-md-4">
+	                <p><span>상담 예약 설정</span><span class="bold">${total_couselor_counseled }/${total_couselor }명</span><jsp:text/></p>
+	              </div>
+	              <div class="col-md-4">
+	                <p><span>실시간 상담 가능</span><span class="bold">${total_couselor_online }/${total_couselor }명</span><jsp:text/></p>
+	              </div>
+	            </div>
+	            <!-- home top 2-->
+	            <div class="home-top2 border-full">
+	              <div class="top"><span class="bold">메뉴 바로가기</span><a href="#" data-toggle="modal" data-target="#popupEditMenu" class="pull-right">메뉴 바로가기 편집</a><jsp:text/></div>
+	              <div class="content row">
+	               <c:forEach items="${list_menu_show }" var="i">
+	                <div class="item">
+	                  <div class="border-full">
+	                    <p> <span>${i.menuAdminLevel1.name}</span><span>><jsp:text/></span><a href='${i.url }'>${i.name}</a><span class="pull-right">><jsp:text/></span><jsp:text/></p>
+	                  </div>
+	                </div>
+	                </c:forEach>
+	              </div>
+	            </div>
+	            <div class="home-top3 row">
+	              <div class="col-md-6">
+	                <div class="content border-full">
+	                  <div class="title"><span class="bold">전체 회원</span><span class="pull-right"><fmt:formatDate value="${yesterday }" pattern="yyyy-MM-dd"/> 기준</span><jsp:text/></div>
+	                  <div class="md-ct">
+	                    <div class="item">
+	                      <p>가입 회원</p>
+	                      <p class="bold"><fmt:formatNumber maxFractionDigits="3" value="${total_user }"></fmt:formatNumber></p>
+	                    </div>
+	                    <div class="item">
+	                      <p>상담사</p>
+	                      <p class="bold"><fmt:formatNumber maxFractionDigits="3" value="${total_user_counselor }"></fmt:formatNumber></p>
+	                    </div>
+	                    <div class="item">
+	                      <p>기업</p>
+	                      <p class="bold"><fmt:formatNumber maxFractionDigits="3" value="${total_user_bussiness }"></fmt:formatNumber></p>
+	                    </div>
+	                    <div class="item">
+	                      <p>상담센터</p>
+	                      <p class="bold"><fmt:formatNumber maxFractionDigits="3" value="${total_user_center }"></fmt:formatNumber></p>
+	                    </div>
+	                  </div>
+	                  <div class="md-bt">
+	                    <p>계약종료 예정 기업 : <span class="bold">${total_user_end_constract }</span><jsp:text/></p>
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="col-md-3">
+	                <div class="content border-full">
+	                  <div class="title-right">승인 신청</div>
+	                  <div class="item-right"> <span>상담사 등록</span><span class="right"><a href="/admin/request/requestCounselor/list">${total_counseling }</a></span><jsp:text/></div>
+	                  <div class="item-right"><span>상담사 정보 변경</span><span class="right"><a href="/admin/request/requestCounselorProfile/list">${total_reuqest_profile }</a></span><jsp:text/></div>
+	                  <div class="item-right"><span>기업 홍보 페이지</span><span class="right"><a href="/admin/request/requestPromotionPage/list">${total_request_ads_page }</a></span><jsp:text/></div>
+	                </div>
+	              </div>
+	              <div class="col-md-3">
+	                <div class="content border-full v2">
+	                  <div class="title-right">1:1 문의 접수</div>
+	                  <div class="item-right"> <span>회원 1:1 문의</span><span class="right"><a href="/admin/cs/inquiry/list?type=1">${total_iniquiry_request}</a></span><jsp:text/></div>
+	                  <div class="item-right"><span>상담사 1:1 문의</span><span class="right"><a href="/admin/cs/inquiry/list?type=2">${total_iniquiry_answer}</a></span><jsp:text/></div>
+	                </div>
+	              </div>
+	            </div>
+	            <div class="home-top4 row">
+              <div class="col-md-6">
+                <div class="content border-full ichat-height">
+                  <div class="top"> <span class="title">회원 가입/탈퇴 통계</span><span class="pull-right">최근 1주일 기준</span><jsp:text/></div>
+                  <script type="text/javascript" src="${theme }/assets/js/Chart.bundle.min.js"><jsp:text/></script>
+                  <canvas id="cavas-chart" style="height:400px!importtant"><jsp:text/></canvas>
+                </div>
+              </div>
+              
+               <div class="col-md-6">
+                <div class="content border-full ichat-height2">
+                    <div class="top"> <span class="title">주요 통계</span><span class="pull-right">최근 1주일 기준</span></div>
+                    <div class="prenext" style="position: relative;float: right;width: auto;top: inherit;margin-top: -25px;">
+                      <button onclick="location.href='/admin/index?typeChartLine=${preChart}'" class="pre"><i class="fa fa-caret-left"><jsp:text/></i></button><span>${chartLineTitle }</span>
+                      <button onclick="location.href='/admin/index?typeChartLine=${nextChart}'" class="next"><i class="fa fa-caret-right"><jsp:text/></i></button>
+                    </div>
+                    <div class="slide-map" style="height: 368px" >
+                      <div class="item-map" ><canvas id="cavas-chart-line"  >&#160;</canvas></div>
+                    </div>
+                  </div>
+              </div>
+              
+            </div>
+
+            </div>
+            <!-- .block-1-->
+            <!-- .member-main-->
+          </div>
+        </div>
+        <!-- .page-content-->
+      </div>
+      <!-- .member-->
+
+    <!--.page-container-->
+
+ <!--.page-container-->
+
+   <div id="popupEditMenu" tabindex="-1" aria-hidden="true" data-backdrop="static" data-keyboard="false" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header"><strong class="modal-title">메뉴 바로가기 편집</strong>
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6"> 
+                <div class="md-title"> <span>전체 메뉴</span></div>
+                <div class="md-content">
+                  <div class="border-full"> 
+                    <ul class="v1"> 
+                      <c:forEach items="${list_menu_all }" var="i">
+                      <c:if test="${i.isShow == 0 }">
+                      	<li class="select"> <a  href="#">${i.menuAdminLevel1.name} > ${i.name}</a>
+                    		 <input type="hidden" name="menu_id" value="${i.id }"/>
+                    	</li>
+                      </c:if>
+                      <c:if test="${i.isShow == 1 }">
+                      	<li class="noselect"> <a  href="#">${i.menuAdminLevel1.name} > ${i.name}</a>
+                    		 <input type="hidden" name="menu_id" value="${i.id }" disabled="disabled"/>
+                    	</li>
+                      </c:if>
+                      </c:forEach>
+                    </ul><span class="icon v1 left"><i class="fa fa-long-arrow-right" aria-hidden="true"><jsp:text/></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="md-title v2"> <span>바로가기 메뉴</span></div>
+                <div class="md-content v2">
+                  <div class="border-full"> 
+                  <form method="post" id="menu_post_form">
+                    <ul class="v2"> 
+                    	<c:forEach items="${list_menu_show }" var="i">
+                    	<li> 
+                    		<a  href="#">${i.menuAdminLevel1.name} > ${i.name}</a>
+                    		<input type="hidden" name="menu_id" value="${i.id }"/>
+                    	</li>
+                      	</c:forEach>
+                    </ul><span class="icon v2"><i class="fa fa-long-arrow-left" aria-hidden="true"><jsp:text/></i></span>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footer"><button type="button" onclick="post_menu()" class="btn green">저장</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div id="popupConfirmDelete" tabindex="-1" aria-hidden="true" data-backdrop="static" data-keyboard="false" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"></button>
+          </div>
+          <div class="modal-body">
+            <h4><strong>저장하시겠습니까?</strong>
+              <!-- Are you sure you want to delete?-->
+            </h4>
+          </div>
+          <div class="modal-footer">
+          	<button onclick="$('#menu_post_form').submit()" class="btn red btn-confirm">확인</button>
+            <button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="popupRequiredMenuLess" tabindex="-1" aria-hidden="true" data-backdrop="static" data-keyboard="false" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"></button>
+          </div>
+          <div class="modal-body">
+            <h4><strong>최소 2개 이상 설정해야 합니다.</strong>
+              <!-- Are you sure you want to delete?-->
+            </h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn red btn-default">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    (function () {
+        function checkTime(i) {
+            return (i &lt; 10) ? "0" + i : i;
+        }
+        function startTime() {
+            var today = new Date(),
+            	month = today.getMonth()+1,
+            	d = today.getDate(),
+                h = checkTime(today.getHours()),
+                m = checkTime(today.getMinutes()),
+                s = checkTime(today.getSeconds());
+            document.getElementById('time_start').innerHTML = month+"월"+ d+"일"+ h+"시 기준" ;
+            t = setTimeout(function () {
+                startTime()
+            }, 500);
+        }
+        startTime();
+    })();
+    
+    function post_menu(){
+    	var count = $('#popupEditMenu .md-content ul.v2 li').length;
+    	if (count &lt;= 1) {
+    		$('#popupRequiredMenuLess').modal('show');
+    	}else{
+    		$('#popupConfirmDelete').modal('show');
+    	}
+    	
+    }
+    </script>
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+
+        // chart.js
+
+        var barChartData = {
+            labels: [${chart_date}],
+            datasets: [
+            {
+                label: '가입',
+                backgroundColor: "rgba(129,6,35,1)",
+                data: [${chart_join}],
+            }, 
+            {
+                // hidden: true,
+                label: '탈퇴',
+                // borderWidth: 0;
+                backgroundColor: "rgba(67,70,190,1)",
+                data: [${chart_remove}],
+            }]
+
+        };
+
+
+            var ctx = document.getElementById("cavas-chart").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    elements: {
+                        rectangle: {
+                            borderWidth: 0
+                        }
+                    },
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        borderWidth: 0
+                    },
+                    borderWidth: 0,
+                    title: {
+                        display: false
+                    },
+                    scales: {
+
+                        yAxes: [{
+
+                             ticks: {
+                                min: 0,
+                                stepSize: 1,
+                                suggestedMax: 10,
+                            }
+
+                        }]
+                    }
+                }
+            });
+            
+            var lineChartData = {
+                    labels: [${chart_date}],
+                    datasets: [{
+                        data: [${chart_data}],
+                        borderColor: "rgba(67,70,190,1)",
+                        backgroundColor: "rgba(79,129,189,0)",
+                    }]
+                }
+                var ctxline = document.getElementById("cavas-chart-line").getContext("2d");
+                window.myBar = new Chart(ctxline, {
+                    type: 'line',
+                    data: lineChartData,
+                    pointBorderColor: "rgba(79,129,189,1)",
+                    pointDotRadius: 0,
+                    bezierCurve: false,
+                    scaleShowVerticalLines: false,
+                    scaleGridLineColor: "black",
+                    options: {
+                        elements: {
+                            rectangle: {
+                                borderWidth: 0
+                            }
+                        },
+                        responsive: true,
+                        legend: {
+                            position: 'bottom',
+                            display: false,
+                            borderWidth: 0
+                        },
+                        borderWidth: 0,
+                        title: {
+                            display: false
+                        },
+                        scales: {
+
+                            yAxes: [{
+
+                                stacked: true,
+                                 ticks: {
+                                    min: 0,
+                                    suggestedMax: 10,
+                                }
+
+                            }]
+                        }
+                    }
+                });
+                
+                
+            
+      });
+
+        // };
+
+        
+
+    </script>
+    <!-- .popupConfirmDelete-->
+</div>

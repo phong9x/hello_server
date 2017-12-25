@@ -1,0 +1,10 @@
+target/
+.classpath
+.idea/
+.project
+.settings/
+*.iml
+*.DS_Store
+*.cfg
+TelosysTools/*
+

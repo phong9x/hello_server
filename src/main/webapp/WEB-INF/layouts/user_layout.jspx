@@ -1,0 +1,424 @@
+<html lang="en" xmlns:jsp="http://java.sun.com/JSP/Page" 
+xmlns:c="http://java.sun.com/jsp/jstl/core" 
+xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:tiles="http://tiles.apache.org/tags-tiles" 
+xmlns:form="http://www.springframework.org/tags/form"  
+xmlns:s="http://www.springframework.org/tags">
+<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+<c:set value="/theme" var="theme"><jsp:text/></c:set>
+<c:set value="/" var="url"></c:set>
+   <head>
+    <meta charset="utf-8"/>
+    <title><s:message code="project.name" /></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <!-- Web Fonts-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+    <!-- Vendor CSS (GLOBAL MANDATORY STYLES)-->
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/simple-line-icons/simple-line-icons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/uniform/css/uniform.default.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"/>
+
+    <!-- Vendor CSS (GLOBAL PAGE LEVEL STYLES)-->
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/select2/select2.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+
+    <!-- Vendor CSS (THEME STYLES)-->
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/css/components.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/global/css/plugins.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/admin/layout/css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/libs/metronic-admin/admin/layout/css/themes/darkblue.css"/>
+
+    <!-- Theme CSS-->
+	<link href="${theme}/libs/metronic-admin/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="${theme}/assets/css/admin.css"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
+    <!--if lt IE 9
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    
+    -->
+  </head>
+
+  <body class="page-header-fixed page-quick-sidebar-over-content">
+    <div class="page-header navbar navbar-fixed-top">
+      <div class="page-header-inner">
+        <!-- BEGIN LOGO-->
+        <div class="page-logo">
+			<a href="${url}">
+				<span class="logo-text" title=""  style=" font-family: Times New Roman; font-weight: bold; font-size: 30px; color: #fff; text-transform: uppercase; ">
+        		<s:message code="project.name"></s:message></span>
+			</a><jsp:text/></div>
+        <!-- .page-logo-->
+	<a href="javascript:;" data-toggle="collapse" data-target=".navbar-collapse" class="menu-toggler responsive-toggler"><jsp:text/></a>
+        <!-- .responsive-toggler-->
+
+        <div class="top-menu">
+          <ul class="nav navbar-nav pull-right">
+            <li class="dropdown dropdown-user"><a href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" class="dropdown-toggle"><span class="username username-hide-on-mobile"><s:message code="button.logout" /></span><i class="fa fa-angle-down"><jsp:text/></i><jsp:text/></a>
+              <ul class="dropdown-menu dropdown-menu-default">
+                <li><a href="${url}logout"><i class="icon-key"><jsp:text/></i><s:message code="button.logout" /></a><jsp:text/></li>
+              </ul>
+            </li>
+            <!-- .dropdown-user-->
+          </ul>
+        </div>
+        <!-- .top-menu-->
+      </div>
+    </div>
+    <!-- .page-header-->
+    <div class="clearfix"><jsp:text/></div>
+
+    <div class="page-container">
+      <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+          <ul data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" class="page-sidebar-menu">
+			<c:if test="${activePage == 'answer' }">
+          		<li class="active"><a href="${url}answer/list"><span class="title">Answer</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'answer' }">
+          		<li><a href="${url}answer/list"><span class="title">Answer</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'business' }">
+          		<li class="active"><a href="${url}business/list"><span class="title">Business</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'business' }">
+          		<li><a href="${url}business/list"><span class="title">Business</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'category' }">
+          		<li class="active"><a href="${url}category/list"><span class="title">Category</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'category' }">
+          		<li><a href="${url}category/list"><span class="title">Category</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'certificate' }">
+          		<li class="active"><a href="${url}certificate/list"><span class="title">Certificate</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'certificate' }">
+          		<li><a href="${url}certificate/list"><span class="title">Certificate</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'coinHeartHistory' }">
+          		<li class="active"><a href="${url}coinHeartHistory/list"><span class="title">CoinHeartHistory</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'coinHeartHistory' }">
+          		<li><a href="${url}coinHeartHistory/list"><span class="title">CoinHeartHistory</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'comment' }">
+          		<li class="active"><a href="${url}comment/list"><span class="title">Comment</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'comment' }">
+          		<li><a href="${url}comment/list"><span class="title">Comment</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'contract' }">
+          		<li class="active"><a href="${url}contract/list"><span class="title">Contract</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'contract' }">
+          		<li><a href="${url}contract/list"><span class="title">Contract</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'counselingCenter' }">
+          		<li class="active"><a href="${url}counselingCenter/list"><span class="title">CounselingCenter</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'counselingCenter' }">
+          		<li><a href="${url}counselingCenter/list"><span class="title">CounselingCenter</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'counselingSession' }">
+          		<li class="active"><a href="${url}counselingSession/list"><span class="title">CounselingSession</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'counselingSession' }">
+          		<li><a href="${url}counselingSession/list"><span class="title">CounselingSession</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'counselor' }">
+          		<li class="active"><a href="${url}counselor/list"><span class="title">Counselor</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'counselor' }">
+          		<li><a href="${url}counselor/list"><span class="title">Counselor</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'faq' }">
+          		<li class="active"><a href="${url}faq/list"><span class="title">Faq</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'faq' }">
+          		<li><a href="${url}faq/list"><span class="title">Faq</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'imageWebsite' }">
+          		<li class="active"><a href="${url}imageWebsite/list"><span class="title">ImageWebsite</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'imageWebsite' }">
+          		<li><a href="${url}imageWebsite/list"><span class="title">ImageWebsite</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'inquiry' }">
+          		<li class="active"><a href="${url}inquiry/list"><span class="title">Inquiry</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'inquiry' }">
+          		<li><a href="${url}inquiry/list"><span class="title">Inquiry</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'message' }">
+          		<li class="active"><a href="${url}message/list"><span class="title">Message</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'message' }">
+          		<li><a href="${url}message/list"><span class="title">Message</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'notice' }">
+          		<li class="active"><a href="${url}notice/list"><span class="title">Notice</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'notice' }">
+          		<li><a href="${url}notice/list"><span class="title">Notice</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'payment' }">
+          		<li class="active"><a href="${url}payment/list"><span class="title">Payment</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'payment' }">
+          		<li><a href="${url}payment/list"><span class="title">Payment</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'paymentHistory' }">
+          		<li class="active"><a href="${url}paymentHistory/list"><span class="title">PaymentHistory</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'paymentHistory' }">
+          		<li><a href="${url}paymentHistory/list"><span class="title">PaymentHistory</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'policy' }">
+          		<li class="active"><a href="${url}policy/list"><span class="title">Policy</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'policy' }">
+          		<li><a href="${url}policy/list"><span class="title">Policy</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'profitRefund' }">
+          		<li class="active"><a href="${url}profitRefund/list"><span class="title">ProfitRefund</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'profitRefund' }">
+          		<li><a href="${url}profitRefund/list"><span class="title">ProfitRefund</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'promotionPage' }">
+          		<li class="active"><a href="${url}promotionPage/list"><span class="title">PromotionPage</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'promotionPage' }">
+          		<li><a href="${url}promotionPage/list"><span class="title">PromotionPage</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'promotionPageLink' }">
+          		<li class="active"><a href="${url}promotionPageLink/list"><span class="title">PromotionPageLink</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'promotionPageLink' }">
+          		<li><a href="${url}promotionPageLink/list"><span class="title">PromotionPageLink</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'psychologicalTest' }">
+          		<li class="active"><a href="${url}psychologicalTest/list"><span class="title">PsychologicalTest</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'psychologicalTest' }">
+          		<li><a href="${url}psychologicalTest/list"><span class="title">PsychologicalTest</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'psychologicalTestSetting' }">
+          		<li class="active"><a href="${url}psychologicalTestSetting/list"><span class="title">PsychologicalTestSetting</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'psychologicalTestSetting' }">
+          		<li><a href="${url}psychologicalTestSetting/list"><span class="title">PsychologicalTestSetting</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'pushNotification' }">
+          		<li class="active"><a href="${url}pushNotification/list"><span class="title">PushNotification</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'pushNotification' }">
+          		<li><a href="${url}pushNotification/list"><span class="title">PushNotification</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'question' }">
+          		<li class="active"><a href="${url}question/list"><span class="title">Question</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'question' }">
+          		<li><a href="${url}question/list"><span class="title">Question</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'questionnaire' }">
+          		<li class="active"><a href="${url}questionnaire/list"><span class="title">Questionnaire</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'questionnaire' }">
+          		<li><a href="${url}questionnaire/list"><span class="title">Questionnaire</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'requestAdsPage' }">
+          		<li class="active"><a href="${url}requestAdsPage/list"><span class="title">RequestAdsPage</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'requestAdsPage' }">
+          		<li><a href="${url}requestAdsPage/list"><span class="title">RequestAdsPage</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'requestCounselingCenter' }">
+          		<li class="active"><a href="${url}requestCounselingCenter/list"><span class="title">RequestCounselingCenter</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'requestCounselingCenter' }">
+          		<li><a href="${url}requestCounselingCenter/list"><span class="title">RequestCounselingCenter</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'requestProfileChanging' }">
+          		<li class="active"><a href="${url}requestProfileChanging/list"><span class="title">RequestProfileChanging</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'requestProfileChanging' }">
+          		<li><a href="${url}requestProfileChanging/list"><span class="title">RequestProfileChanging</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'reservation' }">
+          		<li class="active"><a href="${url}reservation/list"><span class="title">Reservation</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'reservation' }">
+          		<li><a href="${url}reservation/list"><span class="title">Reservation</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'scheduleCounselor' }">
+          		<li class="active"><a href="${url}scheduleCounselor/list"><span class="title">ScheduleCounselor</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'scheduleCounselor' }">
+          		<li><a href="${url}scheduleCounselor/list"><span class="title">ScheduleCounselor</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'testQuestionnaire' }">
+          		<li class="active"><a href="${url}testQuestionnaire/list"><span class="title">TestQuestionnaire</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'testQuestionnaire' }">
+          		<li><a href="${url}testQuestionnaire/list"><span class="title">TestQuestionnaire</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'user' }">
+          		<li class="active"><a href="${url}user/list"><span class="title">User</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'user' }">
+          		<li><a href="${url}user/list"><span class="title">User</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'userRecieveMessage' }">
+          		<li class="active"><a href="${url}userRecieveMessage/list"><span class="title">UserRecieveMessage</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'userRecieveMessage' }">
+          		<li><a href="${url}userRecieveMessage/list"><span class="title">UserRecieveMessage</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'userRole' }">
+          		<li class="active"><a href="${url}userRole/list"><span class="title">UserRole</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'userRole' }">
+          		<li><a href="${url}userRole/list"><span class="title">UserRole</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'versionApp' }">
+          		<li class="active"><a href="${url}versionApp/list"><span class="title">VersionApp</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'versionApp' }">
+          		<li><a href="${url}versionApp/list"><span class="title">VersionApp</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'versionQuestionnaire' }">
+          		<li class="active"><a href="${url}versionQuestionnaire/list"><span class="title">VersionQuestionnaire</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'versionQuestionnaire' }">
+          		<li><a href="${url}versionQuestionnaire/list"><span class="title">VersionQuestionnaire</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'voucher' }">
+          		<li class="active"><a href="${url}voucher/list"><span class="title">Voucher</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'voucher' }">
+          		<li><a href="${url}voucher/list"><span class="title">Voucher</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+			<c:if test="${activePage == 'voucherUser' }">
+          		<li class="active"><a href="${url}voucherUser/list"><span class="title">VoucherUser</span><jsp:text/></a><jsp:text/></li>
+          	</c:if>
+          	<c:if test="${activePage != 'voucherUser' }">
+          		<li><a href="${url}voucherUser/list"><span class="title">VoucherUser</span><jsp:text/></a><jsp:text/></li>
+          	</c:if> 
+          </ul>
+        </div>
+      </div>
+      <!-- .page-sidebar-wrapper-->
+
+      <div class="member page-content-wrapper">
+        <tiles:insertAttribute name="body" />
+      </div>
+      <!-- .member-->
+    </div>
+    <!--.page-container-->
+    <div class="page-footer">
+      <div class="scroll-to-top"><i class="icon-arrow-up"><jsp:text/><jsp:text/></i><jsp:text/></div>
+    </div>
+    <!-- .page-footer-->
+	<!-- #popupInputAllRequiredThings-->
+     <div id="popupInputAllRequiredThings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"></button>
+          </div>
+          <div class="modal-body">
+            <h4><strong><s:message code="message.required" /></strong>
+            </h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn red"><s:message code="button.confirm" /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #popupConfirmDelete-->
+    <div id="popupConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"></button>
+          </div>
+          <div class="modal-body">
+            <h4><strong><s:message code="message.delete" /></strong>
+              <!-- Are you sure you want to delete?-->
+            </h4>
+          </div>
+          <div class="modal-footer">
+          	<button type="button" onclick="tramsNC.confirm()" class="btn red"><s:message code="button.confirm" /></button>
+            <button type="button" data-dismiss="modal" class="btn btn-default"><s:message code="button.cancel" /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #popupConfirmEdit-->
+    <div id="popupConfirmEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"></button>
+          </div>
+          <div class="modal-body">
+            <h4><strong><s:message code="message.edit" /></strong>
+              <!-- Are you sure you want to delete?-->
+            </h4>
+          </div>
+          <div class="modal-footer">
+          	<button type="button" onclick="tramsNC.confirm()" class="btn red"><s:message code="button.confirm" /></button>
+            <button type="button" data-dismiss="modal" class="btn btn-default"><s:message code="button.cancel" /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+	 <!-- Vendor jQuery (CORE PLUGINS - METRONIC)-->
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-migrate.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-ui/jquery-ui.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap/js/bootstrap.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery.blockui.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery.cokie.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/uniform/jquery.uniform.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"><jsp:text/></script>
+
+    <!-- Vendor jQuery (PAGE LEVEL PLUGINS - METRONIC)-->
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-validation/js/jquery.validate.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/jquery-validation/js/additional-methods.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/select2/select2.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-daterangepicker/daterangepicker.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.kr.min.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/ckeditor/ckeditor.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/ckeditor/adapters/jquery.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/bootstrap-touchspin/bootstrap.touchspin.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/moment.min.js"><jsp:text/></script>
+	<script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/fullcalendar/fullcalendar.min.js"><jsp:text/></script>
+	<script type="text/javascript" src="${theme}/libs/metronic-admin/global/plugins/fullcalendar/lang/ko.js"><jsp:text/></script>
+
+    <!-- Vendor jQuery (PAGE LEVEL STYLES - METRONIC)-->
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/global/scripts/metronic.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/admin/layout/scripts/layout.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/admin/layout/scripts/quick-sidebar.js"><jsp:text/></script>
+    <script type="text/javascript" src="${theme}/libs/metronic-admin/admin/layout/scripts/demo.js"><jsp:text/></script>
+
+    <!-- Theme Script-->
+    <script type="text/javascript" src="${theme}/assets/js/admin.js"><jsp:text/></script>
+    <script type="text/javascript" src="${url}js/required.js"><jsp:text/></script>
+  </body>
+  
+</html>
